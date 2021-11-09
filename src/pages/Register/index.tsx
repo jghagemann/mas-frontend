@@ -10,6 +10,7 @@ import {
   InputContainer,
   Error
 } from "./styles";
+import api from "../../services/api";
 
 interface FormData {
   name: string;
@@ -21,7 +22,7 @@ export function Register() {
 
   const {register, handleSubmit, formState: {errors}} = useForm<FormData>();
 
-  const onSubmit = handleSubmit(data => alert(JSON.stringify(data)))
+  const onSubmit = handleSubmit(data => api.post("/user", data).then(response => alert(response.data)));
 
   return (
     <Container>

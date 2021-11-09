@@ -2,6 +2,8 @@ import Modal from "react-modal";
 import { useForm } from "react-hook-form";
 import { FiX } from "react-icons/fi";
 import { Container, Error } from "./styles";
+import api from "../../services/api";
+
 
 interface NewActivityModalProps {
   isOpen: boolean;
@@ -20,7 +22,7 @@ export function NewActivityModal({
 }: NewActivityModalProps) {
 
   const {register, handleSubmit, formState: {errors}} = useForm<NewActivityModalData>();
-  const onSubmit = handleSubmit(data => alert(JSON.stringify(data)))
+  const onSubmit = handleSubmit(data => api.post("/activity", data).then(response => alert(response.data)))
 
 
   return (
@@ -58,7 +60,9 @@ export function NewActivityModal({
             {...register("date", {required: true})}
           />
           {errors.date && <Error>O preenchimento do campo é obrigatório</Error>}
-          <button type="submit">Cadastrar</button>
+          <button type="submit">
+            Cadastrar
+          </button>
         </form>
       </Container>
     </Modal>
