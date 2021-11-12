@@ -1,8 +1,9 @@
-import Modal from "react-modal";
-import { useForm } from "react-hook-form";
-import { FiX } from "react-icons/fi";
-import { Container, Error } from "./styles";
-import api from "../../services/api";
+import React from 'react';
+import Modal from 'react-modal';
+import {FiX} from 'react-icons/fi';
+import { useForm } from 'react-hook-form'
+import { Container, Error } from './styles'
+import api from '../../services/api';
 
 interface NewCourseUnitProps {
   isOpen: boolean;
@@ -24,10 +25,11 @@ export function NewCourseUnitModal({
     formState: { errors },
   } = useForm<NewCourseUnitData>();
 
-  const onSubmit = handleSubmit(data => api.post("/courseunit", data).then(response => alert(response.data)));
+  const onSubmit = handleSubmit(async data => api.post("/courseunit", data).then(onRequestClose));
 
   return (
     <Modal
+      ariaHideApp={false}
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       overlayClassName="react-modal-overlay"

@@ -1,6 +1,29 @@
+import { useEffect, useState } from 'react';
+import {format, parseISO} from 'date-fns';
 import { Container } from "./styles";
+import api from '../../services/api';
+
+interface CourseUnit {
+  name: string;
+}
+
+interface Activity {
+  id: string;
+  name: string;
+  grade: number;
+  activity_date: string;
+  course_unit: CourseUnit;
+}
 
 export function ActivityTable() {
+
+  const [activities, setActivities] = useState<Activity[]>([])
+  
+  useEffect(() => {
+    api.get("/activity")
+      .then(response => setActivities(response.data))
+  }, [])
+  
   return (
     <Container>
       <table>
@@ -13,24 +36,18 @@ export function ActivityTable() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Programação Web</td>
-            <td>Desenvolvimento do FrontEnd</td>
-            <td>8.5</td>
-            <td>10/10/2021</td>
-          </tr>
-          <tr>
-            <td>Programação Web</td>
-            <td>Implementação de Autenticação</td>
-            <td>9.0</td>
-            <td>11/10/2021</td>
-          </tr>
-          <tr>
-            <td>Programação Web</td>
-            <td>Alterar Estilos de Páginas</td>
-            <td>10.0</td>
-            <td>13/10/2021</td>
-          </tr>
+         {
+           activities.map(activity => {
+             return (
+               <tr key={activity.id}>
+                 <td>{activity.course_unit.name}</td>
+                 <td>{activity.name}</td>
+                 <td>{activity.grade}</td>
+                 <td>{format(parseISO(activity.activity_date), "dd/MM/yyyy")}</td>
+               </tr>
+             )
+           })
+         }
         </tbody>
       </table>
     </Container>
