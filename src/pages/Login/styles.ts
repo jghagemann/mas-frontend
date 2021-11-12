@@ -1,53 +1,51 @@
-import styled from 'styled-components';
-import { shade } from 'polished';
+import styled from "styled-components";
+import { shade } from "polished";
 
-import loginBackgroundImg from '../../assets/bg-shapes.svg';
+import loginBackgroundImg from "../../assets/bg-shapes.svg";
 
 export const Container = styled.div`
-    height: 100vh;
-    display: flex;
-    align-items: stretch;
+  height: 100vh;
+  display: flex;
+  align-items: stretch;
 `;
 
 export const Content = styled.div`
-    background: #ffffff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-    width: 100%;
-    max-width: 700px;
+  width: 100%;
+  max-width: 700px;
 `;
 
 export const FormContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-    h2 {
-        margin-bottom: 30px;
-        font-weight: bold;
-        color: #3CB371;
-        
+  h2 {
+    margin-bottom: 30px;
+    font-weight: bold;
+    color: #3cb371;
+  }
+
+  a {
+    color: #f4ede8;
+    display: block;
+    margin-top: 24px;
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &:hover {
+      color: ${shade(0.2, "#f4ede8")};
     }
+  }
 
-    a {
-        color: #f4ede8;
-        display: block;
-        margin-top: 24px;
-        text-decoration: none;
-        transition: color 0.2s;
-
-        &:hover {
-            color: ${shade(0.2, '#f4ede8')};
-        }
-    }
-
-
-    > a {
-    color: #3CB371;
+  > a {
+    color: #3cb371;
     display: block;
     margin-top: 24px;
     text-decoration: none;
@@ -61,46 +59,52 @@ export const FormContainer = styled.div`
     }
 
     &:hover {
-      color: ${shade(0.2, '#3CB371')};
+      color: ${shade(0.2, "#3CB371")};
     }
   }
 `;
 
 export const InputContainer = styled.div`
-    background: #ffffff;
-    border-radius: 10px;
-    padding: 16px;
-    width: 100%;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 16px;
+  width: 100%;
 
-    border: 2px solid #3CB371;
-    color: #3CB371;
+  border: 2px solid #3cb371;
+  color: #3cb371;
 
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    & + div {
-        margin-top: 10px;
+  & + div {
+    margin-top: 10px;
+  }
+
+  input {
+    flex: 1;
+    background: transparent;
+    border: 0;
+    color: #6a6a6a;
+
+    &::placeholder {
+      color: #3cb371;
     }
+  }
 
-    input {
-        flex: 1;
-        background: transparent;
-        border: 0;
-        color: #6a6a6a;
+  svg {
+    margin-right: 16px;
+  }
+`;
 
-        &::placeholder {
-            color: #3CB371;
-        }
-    }
-
-    svg {
-        margin-right: 16px;
-    }
-
+export const Error = styled.span`
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: coral;
 `;
 
 export const Background = styled.div`
   flex: 1;
-  background: linear-gradient(180deg, #1B7E48 0%, rgba(255, 255, 255, 0) 100%), #3CB371 url(${loginBackgroundImg}) no-repeat center;
+  background: linear-gradient(180deg, #1b7e48 0%, rgba(255, 255, 255, 0) 100%),
+    #3cb371 url(${loginBackgroundImg}) no-repeat center;
   background-size: cover;
 `;
