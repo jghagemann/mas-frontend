@@ -22,7 +22,7 @@ export function ActivityTable() {
   useEffect(() => {
     api.get("/activity")
       .then(response => setActivities(response.data))
-  }, [])
+  }, [activities])
   
   return (
     <Container>
